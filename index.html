@@ -48,330 +48,349 @@ html,body {
 
 </style>
 <body>
+    <div style="width: 75%">
+        <div style="font-size: 36px; text-align: center;">
+            <div style="line-height: 95%">3D Nature Environment</div>
+            <div style="font-style: italic; font-size: 24px; line-height: 90%;">with procedurally generated terrain and trees</div>
+            <div style="font-size: 18px; margin-top:5px">by Liam Ozog</div>
+        </div>
+        <p>
+            This is my final project for CS488. Much of the inspiration for this project comes from David Whatley's chapter in GPU Gems 2, <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter01.html">Toward Photorealism in Virtual Botany</a>. The aim was to combine principles of procedural generation with other graphics techniques to create an immersive, organic environment. The biggest objectives of this project are procedural generation of terrain with <a href="http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf">Perlin noise</a> and procedural generation of trees with <a href="http://algorithmicbotany.org/papers/abop/abop-ch1.pdf">Lindenmayer systems</a>.
+            <br><br>
+            Features include first-person camera controls, procedural terrain generation with Perlin noise, model textures, a skybox, billboards (with a screen-door effect), procedural generation of trees with L-systems, water reflections, and shadows.
+            <br><br>
+            Below are five screenshots of the final project. Changing input parameters allow the user to generate different scenes.
+        </p>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/150 - inparams2.png">
+            <figcaption style="text-align: center; font-size: 20pt;">inparams2</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/149 - inparams1.png">
+            <figcaption style="text-align: center; font-size: 20pt;">inparams1</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/151 - inparams3.png">
+            <figcaption style="text-align: center; font-size: 20pt;">inparams3</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/152 - inparams4.png">
+            <figcaption style="text-align: center; font-size: 20pt;">inparams4</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/153 - inparams5.png">
+            <figcaption style="text-align: center; font-size: 20pt;">inparams5</figcaption>
+        </figure>
+        </div>
 
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/100 - 5x5 grid.png">
-        <figcaption style="text-align: center; font-size: 20pt;">00 - 5x5 grid.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/101 - 5 x 10 grid.png">
-        <figcaption style="text-align: center; font-size: 20pt;">01 - 5 x 10 grid.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/102 - simplenoise, period of 10.png">
-        <figcaption style="text-align: center; font-size: 20pt;">02 - simplenoise, period of 10.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/103 - simpleNoise, period of 256, from underneath.png">
-        <figcaption style="text-align: center; font-size: 20pt;">03 - simpleNoise, period of 256, from underneath.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/104 - simpleNoise, using permutation table and cos smoothStep.png">
-        <figcaption style="text-align: center; font-size: 20pt;">04 - simpleNoise, using permutation table and cos smoothStep.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/105 - simpleNoise with Perlin's fade smoothstep fn.png">
-        <figcaption style="text-align: center; font-size: 20pt;">05 - simpleNoise with Perlin's fade smoothstep fn.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/106 - smoothed out terrain gen.png">
-        <figcaption style="text-align: center; font-size: 20pt;">06 - smoothed out terrain gen.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/107 - vertex colour from height.png">
-        <figcaption style="text-align: center; font-size: 20pt;">07 - vertex colour from height.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/108 - filled triangles instead of wireframes.png">
-        <figcaption style="text-align: center; font-size: 20pt;">08 - filled triangles instead of wireframes.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/109 - noise function w gradients.png">
-        <figcaption style="text-align: center; font-size: 20pt;">09 - noise function w gradients.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/110 - tweaking terrain generation.png">
-        <figcaption style="text-align: center; font-size: 20pt;">10 - tweaking terrain generation.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/111 - got terrain noise working nicely.png">
-        <figcaption style="text-align: center; font-size: 20pt;">11 - got terrain noise working nicely.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/112 - added normal data to vertex array.png">
-        <figcaption style="text-align: center; font-size: 20pt;">12 - added normal data to vertex array.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/113 - added VERY simple direction light.png">
-        <figcaption style="text-align: center; font-size: 20pt;">13 - added VERY simple direction light.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/114 - applied texture to ground.png">
-        <figcaption style="text-align: center; font-size: 20pt;">14 - applied texture to ground.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/115 - scaled grass texture.png">
-        <figcaption style="text-align: center; font-size: 20pt;">15 - scaled grass texture.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/116 - adjusting fragment shader.png">
-        <figcaption style="text-align: center; font-size: 20pt;">16 - adjusting fragment shader.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/117 - added water.png">
-        <figcaption style="text-align: center; font-size: 20pt;">17 - added water.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/118 - added skybox.png">
-        <figcaption style="text-align: center; font-size: 20pt;">18 - added skybox.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/119 - fixed skybox.png">
-        <figcaption style="text-align: center; font-size: 20pt;">19 - fixed skybox.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/120 - added tree drawn using interpretation of Lsystem expression.png">
-        <figcaption style="text-align: center; font-size: 20pt;">20 - added tree drawn using interpretation of Lsystem expression.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/121 - added branching to trees.png">
-        <figcaption style="text-align: center; font-size: 20pt;">21 - added branching to trees.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/122 - added lsystem generation for expressions.png">
-        <figcaption style="text-align: center; font-size: 20pt;">22 - added lsystem generation for expressions.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/123 - drawing a forest of trees.png">
-        <figcaption style="text-align: center; font-size: 20pt;">23 - drawing a forest of trees.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/124 - different tree types generated from different production rules.png">
-        <figcaption style="text-align: center; font-size: 20pt;">24 - different tree types generated from different production rules.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/125 - added randomness to divergence angle of branches.png">
-        <figcaption style="text-align: center; font-size: 20pt;">25 - added randomness to divergence angle of branches.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/126 - new tree type, more depth to lsystems.png">
-        <figcaption style="text-align: center; font-size: 20pt;">26 - new tree type, more depth to lsystems.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/127 - grass billboard.png">
-        <figcaption style="text-align: center; font-size: 20pt;">27 - grass billboard.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/128 - fields of grass.png">
-        <figcaption style="text-align: center; font-size: 20pt;">28 - fields of grass.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/129 - hilariously misaligned vertex attributes.png">
-        <figcaption style="text-align: center; font-size: 20pt;">29 - hilariously misaligned vertex attributes.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/130 - added screendoor with hilarious results.png">
-        <figcaption style="text-align: center; font-size: 20pt;">30 - added screendoor with hilarious results.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/131 - same problem, no grass.png">
-        <figcaption style="text-align: center; font-size: 20pt;">31 - same problem, no grass.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/132 - fixed screendoor effect.png">
-        <figcaption style="text-align: center; font-size: 20pt;">32 - fixed screendoor effect.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/133 - fixing light calculations.png">
-        <figcaption style="text-align: center; font-size: 20pt;">33 - fixing light calculations.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/134 - more tweaks to lighting.png">
-        <figcaption style="text-align: center; font-size: 20pt;">34 - more tweaks to lighting.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/135 - another angle.png">
-        <figcaption style="text-align: center; font-size: 20pt;">35 - another angle.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/136 - attempt at a shadow map.png">
-        <figcaption style="text-align: center; font-size: 20pt;">36 - attempt at a shadow map.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/137 - rendering shadow map to a texture.png">
-        <figcaption style="text-align: center; font-size: 20pt;">37 - rendering shadow map to a texture.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/138 - discover that shadow map IS looking at the environment.png">
-        <figcaption style="text-align: center; font-size: 20pt;">38 - discover that shadow map IS looking at the environment.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/139 - trying to find correct orientation.png">
-        <figcaption style="text-align: center; font-size: 20pt;">39 - trying to find correct orientation.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/140 - successfully found correct light direction.png">
-        <figcaption style="text-align: center; font-size: 20pt;">40 - successfully found correct light direction.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/141 - apply shadow map to scene.png">
-        <figcaption style="text-align: center; font-size: 20pt;">41 - apply shadow map to scene.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/142 - fix shadow acne, no peter panning.png">
-        <figcaption style="text-align: center; font-size: 20pt;">42 - fix shadow acne, no peter panning.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/143 - added skybox reflection on water.png">
-        <figcaption style="text-align: center; font-size: 20pt;">43 - added skybox reflection on water.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/144 - another angle of skybox reflection.png">
-        <figcaption style="text-align: center; font-size: 20pt;">44 - another angle of skybox reflection.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/145 - added leaves.png">
-        <figcaption style="text-align: center; font-size: 20pt;">45 - added leaves.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/146 - terrain slope determines texture.png">
-        <figcaption style="text-align: center; font-size: 20pt;">46 - terrain slope determines texture.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/147 - added colour variation for leaves, new tree types.png">
-        <figcaption style="text-align: center; font-size: 20pt;">47 - added colour variation for leaves, new tree types.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/148 - parallel rewriting of Lsystems.png">
-        <figcaption style="text-align: center; font-size: 20pt;">48 - parallel rewriting of Lsystems.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/149 - inparams1.png">
-        <figcaption style="text-align: center; font-size: 20pt;">49 - inparams1.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/150 - inparams2.png">
-        <figcaption style="text-align: center; font-size: 20pt;">50 - inparams2.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/151 - inparams3.png">
-        <figcaption style="text-align: center; font-size: 20pt;">51 - inparams3.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/152 - inparams4.png">
-        <figcaption style="text-align: center; font-size: 20pt;">52 - inparams4.png</figcaption>
-    </figure>
-    </div>
-    <div style="width: 75%">
-    <figure>
-        <img style="display: block; width: 100%;" src="cs488imgs/153 - inparams5.png">
-        <figcaption style="text-align: center; font-size: 20pt;">53 - inparams5.png</figcaption>
-    </figure>
+        <br><hr>
+        <p style="margin: 30px 0;">
+            During the development of this project, I took screenshots to track my progress. They are presented here in chronological order.
+        </p>
+
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/100 - 5x5 grid.png">
+            <figcaption style="text-align: center; font-size: 20pt;">00 - 5x5 grid.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/101 - 5 x 10 grid.png">
+            <figcaption style="text-align: center; font-size: 20pt;">01 - 5 x 10 grid.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/102 - simplenoise, period of 10.png">
+            <figcaption style="text-align: center; font-size: 20pt;">02 - simplenoise, period of 10.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/103 - simpleNoise, period of 256, from underneath.png">
+            <figcaption style="text-align: center; font-size: 20pt;">03 - simpleNoise, period of 256, from underneath.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/104 - simpleNoise, using permutation table and cos smoothStep.png">
+            <figcaption style="text-align: center; font-size: 20pt;">04 - simpleNoise, using permutation table and cos smoothStep.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/105 - simpleNoise with Perlin's fade smoothstep fn.png">
+            <figcaption style="text-align: center; font-size: 20pt;">05 - simpleNoise with Perlin's fade smoothstep fn.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/106 - smoothed out terrain gen.png">
+            <figcaption style="text-align: center; font-size: 20pt;">06 - smoothed out terrain gen.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/107 - vertex colour from height.png">
+            <figcaption style="text-align: center; font-size: 20pt;">07 - vertex colour from height.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/108 - filled triangles instead of wireframes.png">
+            <figcaption style="text-align: center; font-size: 20pt;">08 - filled triangles instead of wireframes.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/109 - noise function w gradients.png">
+            <figcaption style="text-align: center; font-size: 20pt;">09 - noise function w gradients.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/110 - tweaking terrain generation.png">
+            <figcaption style="text-align: center; font-size: 20pt;">10 - tweaking terrain generation.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/111 - got terrain noise working nicely.png">
+            <figcaption style="text-align: center; font-size: 20pt;">11 - got terrain noise working nicely.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/112 - added normal data to vertex array.png">
+            <figcaption style="text-align: center; font-size: 20pt;">12 - added normal data to vertex array.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/113 - added VERY simple direction light.png">
+            <figcaption style="text-align: center; font-size: 20pt;">13 - added VERY simple direction light.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/114 - applied texture to ground.png">
+            <figcaption style="text-align: center; font-size: 20pt;">14 - applied texture to ground.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/115 - scaled grass texture.png">
+            <figcaption style="text-align: center; font-size: 20pt;">15 - scaled grass texture.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/116 - adjusting fragment shader.png">
+            <figcaption style="text-align: center; font-size: 20pt;">16 - adjusting fragment shader.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/117 - added water.png">
+            <figcaption style="text-align: center; font-size: 20pt;">17 - added water.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/118 - added skybox.png">
+            <figcaption style="text-align: center; font-size: 20pt;">18 - added skybox.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/119 - fixed skybox.png">
+            <figcaption style="text-align: center; font-size: 20pt;">19 - fixed skybox.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/120 - added tree drawn using interpretation of Lsystem expression.png">
+            <figcaption style="text-align: center; font-size: 20pt;">20 - added tree drawn using interpretation of Lsystem expression.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/121 - added branching to trees.png">
+            <figcaption style="text-align: center; font-size: 20pt;">21 - added branching to trees.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/122 - added lsystem generation for expressions.png">
+            <figcaption style="text-align: center; font-size: 20pt;">22 - added lsystem generation for expressions.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/123 - drawing a forest of trees.png">
+            <figcaption style="text-align: center; font-size: 20pt;">23 - drawing a forest of trees.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/124 - different tree types generated from different production rules.png">
+            <figcaption style="text-align: center; font-size: 20pt;">24 - different tree types generated from different production rules.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/125 - added randomness to divergence angle of branches.png">
+            <figcaption style="text-align: center; font-size: 20pt;">25 - added randomness to divergence angle of branches.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/126 - new tree type, more depth to lsystems.png">
+            <figcaption style="text-align: center; font-size: 20pt;">26 - new tree type, more depth to lsystems.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/127 - grass billboard.png">
+            <figcaption style="text-align: center; font-size: 20pt;">27 - grass billboard.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/128 - fields of grass.png">
+            <figcaption style="text-align: center; font-size: 20pt;">28 - fields of grass.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/129 - hilariously misaligned vertex attributes.png">
+            <figcaption style="text-align: center; font-size: 20pt;">29 - hilariously misaligned vertex attributes.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/130 - added screendoor with hilarious results.png">
+            <figcaption style="text-align: center; font-size: 20pt;">30 - added screendoor with hilarious results.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/131 - same problem, no grass.png">
+            <figcaption style="text-align: center; font-size: 20pt;">31 - same problem, no grass.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/132 - fixed screendoor effect.png">
+            <figcaption style="text-align: center; font-size: 20pt;">32 - fixed screendoor effect.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/133 - fixing light calculations.png">
+            <figcaption style="text-align: center; font-size: 20pt;">33 - fixing light calculations.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/134 - more tweaks to lighting.png">
+            <figcaption style="text-align: center; font-size: 20pt;">34 - more tweaks to lighting.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/135 - another angle.png">
+            <figcaption style="text-align: center; font-size: 20pt;">35 - another angle.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/136 - attempt at a shadow map.png">
+            <figcaption style="text-align: center; font-size: 20pt;">36 - attempt at a shadow map.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/137 - rendering shadow map to a texture.png">
+            <figcaption style="text-align: center; font-size: 20pt;">37 - rendering shadow map to a texture.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/138 - discover that shadow map IS looking at the environment.png">
+            <figcaption style="text-align: center; font-size: 20pt;">38 - discover that shadow map IS looking at the environment.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/139 - trying to find correct orientation.png">
+            <figcaption style="text-align: center; font-size: 20pt;">39 - trying to find correct orientation.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/140 - successfully found correct light direction.png">
+            <figcaption style="text-align: center; font-size: 20pt;">40 - successfully found correct light direction.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/141 - apply shadow map to scene.png">
+            <figcaption style="text-align: center; font-size: 20pt;">41 - apply shadow map to scene.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/142 - fix shadow acne, no peter panning.png">
+            <figcaption style="text-align: center; font-size: 20pt;">42 - fix shadow acne, no peter panning.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/143 - added skybox reflection on water.png">
+            <figcaption style="text-align: center; font-size: 20pt;">43 - added skybox reflection on water.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/144 - another angle of skybox reflection.png">
+            <figcaption style="text-align: center; font-size: 20pt;">44 - another angle of skybox reflection.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/145 - added leaves.png">
+            <figcaption style="text-align: center; font-size: 20pt;">45 - added leaves.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/146 - terrain slope determines texture.png">
+            <figcaption style="text-align: center; font-size: 20pt;">46 - terrain slope determines texture.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/147 - added colour variation for leaves, new tree types.png">
+            <figcaption style="text-align: center; font-size: 20pt;">47 - added colour variation for leaves, new tree types.png</figcaption>
+        </figure>
+        </div>
+        <div>
+        <figure>
+            <img style="display: block; width: 100%;" src="cs488imgs/148 - parallel rewriting of Lsystems.png">
+            <figcaption style="text-align: center; font-size: 20pt;">48 - parallel rewriting of Lsystems.png</figcaption>
+        </figure>
+        </div>
     </div>
 </body>
 </html>
